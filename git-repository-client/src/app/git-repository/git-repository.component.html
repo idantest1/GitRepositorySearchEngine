@@ -1,0 +1,56 @@
+<h4 class="card-header">Git Repositories</h4>
+<div class="container">
+  <div class="form-group repositories">
+    <div class="input-group">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Serach "
+        [(ngModel)]="serachTerm"
+      />
+      <input
+        class="input-group-append btn btn-primary"
+        type="button"
+        value="Serach repositories"
+        (click)="searchRepositories(serachTerm)"
+      />
+    </div>
+    <div>
+      <span *ngIf="loading"> Loading repositories...</span>
+    </div>
+  </div>
+  <div class="form-group repositories">
+    <div class="input-group">
+      <select [(ngModel)]="selectionModel" class="form-control">
+        <option [ngValue]="undefined" disabled selected>
+          select repository
+        </option>
+        <option
+          *ngFor="let item of repositoryResults?.items"
+          [ngValue]="item.name"
+        >
+          {{ item.name }}
+        </option>
+      </select>
+      <input
+        class="input-group-append btn btn-primary"
+        type="button"
+        (click)="addToFavorites(selectionModel)"
+        value="Add To Favorites"
+      />
+    </div>
+    <div>
+      <span *ngIf="addingToFavorite"> Adding to favorites...</span>
+    </div>
+  </div>
+  <div *ngIf="error">
+    <span> {{ error }}</span>
+  </div>
+</div>
+<div>
+  <a routerLink="../favorites" class="btn btn-link">Go to favorites</a>
+</div>
+
+<div>
+  <a (click)="logout()" class="btn btn-link">Logout</a>
+</div>

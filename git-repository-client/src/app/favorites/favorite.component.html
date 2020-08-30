@@ -1,0 +1,16 @@
+<h4 class="card-header">Favorites</h4>
+<div *ngIf="loading">Loading Favorites..</div>
+<div *ngIf="favorites">
+  <ul class="list-group">
+    <li *ngFor="let favorite of favorites" class="list-group-item">
+      {{ favorite }}
+    </li>
+  </ul>
+</div>
+<div></div>
+<div *ngIf="error">
+  <span> {{ error }}</span>
+</div>
+<div>
+  <a routerLink="../" class="btn btn-link">Back</a>
+</div>
